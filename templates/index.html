@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Toy Shopping Website</title>
+</head>
+<body>
+<h1>Toy Shopping Website</h1>
+<p>Welcome to our toy shopping website! We have a wide variety of toys for kids of all ages.</p>
+
+<h2>Products</h2>
+
+{% for product in products %}
+<div class="product">
+<a href="{{ url_for('product_details', product_id=product.id) }}">
+<img src="{{ product.image }}" alt="{{ product.name }}">
+<h3>{{ product.name }}</h3>
+<p>{{ product.description }}</p>
+<p>{{ product.price }}€</p>
+</a>
+</div>
+{% endfor %}
+
+<form action="{{ url_for('add_to_cart') }}" method="post">
+<label for="product_id">Product ID:</label>
+<input type="text" name="product_id">
+<label for="quantity">Quantity:</label>
+<input type="text" name="quantity">
+<input type="submit" value="Add to Cart">
+</form>
+
+</body>
+</html>
+
